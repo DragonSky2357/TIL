@@ -28,3 +28,10 @@ Attribute는 Element의 시작 태그 안에서 사용되는 것으로 성질, �
 ```
 <img src="example.png"> 
 ```
+
+### 1.3 Comments(주석)
+코드를 설명하기 위해 사용되고 화면에 표시는 하지 않는다.
+```
+<!-- 화면의 표시되지 않는다-->
+<p>Hello World</p>
+```
