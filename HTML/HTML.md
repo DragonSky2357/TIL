@@ -12,7 +12,7 @@
 ```
 
 ### 1.2 Attribute(속성)
-Attribute는 Element의 시작 태그 안에서 사용되는 것으로 성질, 특징등의 구체화된 정보를 제공한다.<hr/>
+Attribute는 Element의 시작 태그 안에서 사용되는 것으로 성질, 특징등의 구체화된 정보를 제공한다.
 또한 Attribute의 Name과 Attribute의 값은 한 쌍을 이룬다.
 ```
 <img src="example.png"> 
