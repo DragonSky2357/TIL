@@ -13,7 +13,8 @@
 ```
 
 #### 태그정리
-##### - <html> 
+- <html> </html> : 웹페이지의 시작과 끝을 나타낸다.
+
 ### 1.2 Attribute(속성)
 Attribute는 Element의 시작 태그 안에서 사용되는 것으로 성질, 특징등의 구체화된 정보를 제공한다.
 또한 Attribute의 Name과 Attribute의 값은 한 쌍을 이룬다.
