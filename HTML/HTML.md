@@ -6,4 +6,6 @@
 ## 1. HTML5의 기본 문법
 ### 1.1 요소(Element)
 요소는 시작태그 및 종료태그로 구성된다.
+<code>
 <p>Hello World</p>
+</code>
