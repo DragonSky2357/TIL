@@ -21,7 +21,7 @@ console.log("Hello World"); // Hello World
 ### 자료형
 - `Number` : var num = 10;
 - `String` : var s = "Hello";
-- `isTrue` : var bool = true;
+- `Boolean` : var bool = true;
 - `null` : var empty = null;
 - `undefined` : var x;
 - `Symbol` : var num = 10; // ES6이후 추가된 변경 불가능한 자료형이며 참조형 키(Key)로 사용이 가능하다.
@@ -31,4 +31,5 @@ console.log("Hello World"); // Hello World
 addNation("USA"); //함수 호출
 
 #### 자료형의 타입
-`원시타입` : 
+`원시타입(Primitive Data Type)` : `Number`, `String`,`Boolean`,`null`,`undefined`,`Symbol`
+`참조타입(Reference Data Type)` : `Object`,`Array` ,`function`
