@@ -33,3 +33,6 @@ addNation("USA"); //함수 호출
 #### 자료형의 타입
 - `원시타입(Primitive Data Type)` : `Number` `String` `Boolean` `null` `undefined` `Symbol`
 - `참조타입(Reference Data Type)` : `Object` `Array` `function`
+
+### 조건문
+- `if` `else if` `else` : 
