@@ -35,4 +35,25 @@ addNation("USA"); //함수 호출
 - `참조타입(Reference Data Type)` : `Object` `Array` `function`
 
 ### 조건문
-- `if` `else if` `else` : 
+- `if` : 의사결정을 할 수 있는 조건문 true인 경우 실행(else if, else)도 동일하다.
+
+```
+if(표현식1){명령문1}
+else if(표현식2){명령문2}
+else {명령문3}
+```
+
+- `switch` : case의 값과 일치 여부를 확인하며 === 연산자(값과 자료형을 모두 비교)를 사용한다. 
+
+```
+switch(표현식){
+    case 값1:
+        명령문1;
+        break;
+     case 값2:
+        명령문2;
+        break;
+     default:
+        명령문3;
+}
+```
