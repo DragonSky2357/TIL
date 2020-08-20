@@ -16,7 +16,7 @@ p {font-size:16px; color:blue}
 ```
 
 ### CSS 키워드
-적용예: [Google](https://google.com)
+Link: [CSS 키워드](https://developer.mozilla.org/ko/docs/Web/CSS/Reference)
 
 
 ### 1.2 Attribute(속성)
