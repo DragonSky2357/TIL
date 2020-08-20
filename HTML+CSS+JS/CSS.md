@@ -7,16 +7,21 @@
 ## 1. CSS의 기본 문법
 
 ### 1.1 Selector(선택자)
-원하는 스타일을 적용하고자 하는 HTML태그를 이용하여 적용함
+원하는 스타일을 적용하고자 하는 HTML태그를 이용하여 적용한다.
 
 ```
-p {font-size:16px; color:blue}
-.class {padding:10px; margin:20px;}
-#id {border:1px; background:#ffffff;}
+Selector {...}
+.class {...}
+#id {...}
 ```
 
 #### CSS 키워드
 Link: [CSS 키워드](https://developer.mozilla.org/ko/docs/Web/CSS/Reference)
 
 
-###
+### Property(속성)
+HTML의 요소들을 선택하고 {}안의 속성들을 적용하여 다양한 스타일 만든다.
+콜론(:)뒤에 여러가지 속성값들이 올 수 있다.
+여러개의 속성들을 지정할 수 있으며 세미콜론(;)으로 구분한다.
+
+### Value(속성값)
