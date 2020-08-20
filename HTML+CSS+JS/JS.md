@@ -1,4 +1,4 @@
-# JavaScript
+# JavaScript 
 - 웹페이지를 동적으로 움직이게 만들어준다.
 - HTML이 몸이라면 CSS는 스타일리쉬(화장,옷)이라면 JS는 스마트폰이다. 
 - Node js 및 React js등 여러가지 분야로 확장됨
@@ -37,14 +37,6 @@ addNation("USA"); //함수 호출
 - `참조타입(Reference Data Type)` : `Object` `Array` `function`
 
 ### 조건문
-- `if` : 의사결정을 할 수 있는 조건문 true인 경우 실행(else if, else)도 동일하다.
-
-```
-if(표현식1){명령문1}
-else if(표현식2){명령문2}
-else {명령문3}
-```
-
 - `switch` : case의 값과 일치 여부를 확인하며 === 연산자(값과 자료형을 모두 비교)를 사용한다. 
 
 ```
@@ -61,14 +53,6 @@ switch(표현식){
 ```
 
 ### 반복문
-- `for` : for(초기값;조건식;증감식)으로 구성된다.
-
-```
-for(var i=0;i<5;i++){
-    console.log(i) // 1 2 3 4 5
-}
-```
-
 - `for in` : for(속성명 in 반복 대상)으로 구성되며 반복문을 통해 요소를 한개씩 가져와 속성명으로 선언과 동시에 할당한다.
 
 ```
@@ -79,20 +63,59 @@ for(var item in nations){
 }
 ```
 
-- `while` : 조건식이 ture일때 반복 실행 false일때 반복 중단 한 번도 실행하지 않을 수 있다.
+### 숫자형
+- `Infinity` : 무한대를 의미한다. `Infinity`로 나누면 무슨 값이든 0이 된다.
+- `Nan` : Not a number 유요하지 않는 값 or 숫자가 너무 커서 표현할 수 없을때 표현된다.
+
+### null 과 undefined
+- `null` : 비어 있는, 존재하지 않는 값 `typeof`로 자료형을 확일할 때 `object`를 반환하는데 이는 JS 기존 이슈로 인한 결과이다.
+- `undefined` : 아무 값도 할당받지 않은 상태 변수에 어떠한 값도 대입하지 않거나 함수에서 명시적으로 값을 반환하지 않았을 때 `undefined`로 반환
+```
+var value=null;
+console.log(value); // null
+console.log(typeof value); // object
+
+var value;
+console.log(value); // null
+console.log(typeof value); // object
+```
+
+### 템플릿 문자열
+- `${value}` : ``(억음 부호)표시를 사용하며 계산된 결과가 문자열로 변경되어 삽입된다.
+```
+var PI=3.141592
+console.log(`PI의 값은 ${PI}입니다.`) // PI의 값은 3.141592입니다.
+```
+
+### 산술 연산자
+- `**` : 거듭제곱 연산자
+
+### 비교 연산자
+- `==`(동등 연산자) : 비교 대상값의 자료형이 서로 다르면 강제로 형을 바꾼 뒤 비교
+- `===`(일치 연산자) : 값을 비교뿐 아니라 자료형까지 일치하는지 비교
+
+### 논리 연산자
+- `!!` : not 연산자에 not 연산자를 부여한다.
+
+### 객체(Object)
+- 객체란 값들을 그룹으로 묶은 데이터 모음이다.
+- 객체를 만드는 방법은 표현식으로 `{}`를 소용한다.
+- 키(key)와값(value)를 한 쌍으로 정의하며 속성(Properties)라 부른다.
+
+#### 🏆JSON(JavaScript Object Notation)🏆
+- JS의 객체와 매우 유사한 구조를 지닌 데이터 교환 형식이다.
+- JSON 형태는 key : value로 구성되어 있다.
 
 ```
-while(true){
-    console.log("infinite print"); // infinite print infinite print infinite print infinite print... 무한반복
+var person={
+    name: "김철수",
+    age : 25,
+    tour : ["중국","일본","미국","영국","캐나다"],
+    addTour : function(nation){
+        this.tour.push(nation);
+    }
 }
-```
 
-- `do~while` : while과 다르게 무조건 처음은 조건에 관계없이 한번 실행하며 while();로 표시한다.
-
-```
-var count=0;
-
-do{
-    console.log(count); // 1 2 3
-}while(count<3);
+person.addTour("덴마크");
+console.log(person.tour) // 중국 일본 미국 영국 캐나다
 ```
