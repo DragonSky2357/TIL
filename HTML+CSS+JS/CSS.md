@@ -42,3 +42,18 @@ div{
   ...:12px;
 }
 ```
+
+## CSS와 HTML 연동
+- HTML안에 link태그 안에 css를 적용한다.
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
+```
