@@ -16,7 +16,7 @@ p {font-size:16px; color:blue}
 ```
 
 ### CSS 키워드
-[CSS 키워드]: https://developer.mozilla.org/ko/docs/Web/CSS/Reference
+[CSS 키워드]: https://developer.mozilla.org/ko/docs/Web/CSS/Reference "Go google"
 
 
 ### 1.2 Attribute(속성)
