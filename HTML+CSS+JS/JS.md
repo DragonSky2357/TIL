@@ -19,4 +19,16 @@ console.log("Hello World"); // Hello World
 - 다른 프로그래밍 언어와 비슷하며 한 줄은 // 블록 단위는 /* */로 표시한다.
 
 ### 자료형
-`Number` : 
+`Number` : var num = 10;
+`String` : var s = "Hello";
+`isTrue` : var bool = true;
+`null` : var empty = null;
+`undefined` : var x;
+`Symbol` : var num = 10; // ES6이후 추가된 변경 불가능한 자료형이며 참조형 키(Key)로 사용이 가능하다.
+`Object` : var person={name:"김철수",age=25}
+`Array` : var nations = ["Korea","China","Japan"]
+`function` : var addNation = function(nation){nations.push(nation);} //함수 선언 및 정의
+addNation("USA"); //함수 호출
+
+#### 자료형의 타입
+`원시타입` : 
