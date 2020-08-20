@@ -8,7 +8,9 @@
 ### 기본적인 출력
 
 ```
+var PI=3.14
 console.log("Hello World"); // Hello World
+console.log(${PI}); // 3.14
 ```
 
 ### 값(value)와 변수(variable)
@@ -56,4 +58,43 @@ switch(표현식){
      default:
         명령문3;
 }
+```
+
+### 반복문
+- `for` : for(초기값;조건식;증감식)으로 구성된다.
+
+```
+for(var i=0;i<5;i++){
+    console.log(i) // 1 2 3 4 5
+}
+```
+
+- `for in` : for(속성명 in 반복 대상)으로 구성되며 반복문을 통해 요소를 한개씩 가져와 속성명으로 선언과 동시에 할당한다.
+
+```
+var nations = ["Korea","China","Japan"]
+
+for(var item in nations){
+    console.log(item); // Korea China Japan
+}
+```
+
+- `while` : 조건식이 ture일때 반복 실행 false일때 반복 중단 한 번도 실행하지 않을 수 있다.
+
+```
+while(true){
+    console.log("infinite print"); // infinite print infinite print infinite print infinite print... 무한반복
+}
+
+```
+
+- `do~while` : while과 다르게 무조건 처음은 조건에 관계없이 한번 실행하며 while();로 표시한다.
+
+```
+var count=0;
+
+do{
+    console.log(count); // 
+}while(count<3);
+
 ```
