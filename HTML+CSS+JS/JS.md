@@ -85,7 +85,6 @@ for(var item in nations){
 while(true){
     console.log("infinite print"); // infinite print infinite print infinite print infinite print... 무한반복
 }
-
 ```
 
 - `do~while` : while과 다르게 무조건 처음은 조건에 관계없이 한번 실행하며 while();로 표시한다.
@@ -94,7 +93,6 @@ while(true){
 var count=0;
 
 do{
-    console.log(count); // 
+    console.log(count); // 1 2 3
 }while(count<3);
-
 ```
