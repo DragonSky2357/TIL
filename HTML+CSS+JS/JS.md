@@ -119,3 +119,56 @@ var person={
 person.addTour("덴마크");
 console.log(person.tour) // 중국 일본 미국 영국 캐나다
 ```
+### arguments객체
+- 매개변수와 달리 함수가 호출될 때 전될되는 값이다.
+- 매개변수의 개수가 달라도 에러를 발생하지 않는다.
+
+```
+function sum() {
+  var total = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    total += arguments[i];
+  }
+  console.log(arguments instanceof Array);
+  return total;
+  ```
+### 나머지 매개변수
+- ES6에서 추가된것으로 arguments 객체는 모든 인자를 전달하는 반면 ...restParameter(나머지 매개변수)는 할당하지 않는 나머지 변수를 의미한다.
+```
+function sum(num1,num2,...restParameter){ // num1 = 1, num2 =2, restParameter=[3,4,5]
+var total = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    total += arguments[i];
+  }
+  console.log(arguments instanceof Array);
+  return total;
+}
+sum(1,2,3,4,5);
+```
+
+### 함수 호이스팅
+- JS에서 함수를 선언하기 전에 호출이 가능하다.
+```
+hello();
+function hello() {
+  console.log("Hello World");
+}
+```
+
+### let
+- 변수의 유효범위를 블록 범위로 지정한다.
+```
+if(true){
+  var functionScopeValue = 'global';
+  let blockScopeVale = 'local';
+}
+
+console.log(functionScopeValue); // global
+console.log(blockScopeVale); // ReferenceError
+```
+
+### 객체 속성 기술자(Property Descriptor)
+- JS의 모든 객체 속성은 자기 자신에 대한 정보를 담고 있는 속성 기술자를 가지고 있다.
+- Object.getOwnPropertyDescriptor() 사용하여 기술자 객체를 가져온다.
+- Object.defineProperty를 통해 해당 객체의 속성을 가져온다
+    + `value` : 
