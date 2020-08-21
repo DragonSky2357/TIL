@@ -194,7 +194,7 @@ console.log(blockScopeVale); // ReferenceError
 - Array.isArray(value) : value가  배열이면 true 그렇지 않으면 flase
 - ParseInt(value) : value(문자열)을 정수로 변환한다.
 - ParseFloat(value) : value(문자열)을 실수로 변환한다.
-- slice(s,e) : s부터 e까지 자른다.(e는 필수사항은 아니다. 때문에 e가 없을시 인덱스 끝까지 자른다. s가 음수면 음수만큼 내려온 index로 취급한다.)
+- slice(s,e) : s부터 e까지 자른다.(e는 필수사항은 e가 없을시 인덱스 끝까지 자른다. s가 음수면 음수만큼 내려온 index로 취급한다.)
 - substring(s,e) : s부터 e까지 자른다.(slice와 다르게  s or e가 음수이거나 NaN이면 0을 사용한다.)
 - substr(s,l) : s부터 l길이 만큼 문자열을 자른다.
 - length() : 문자열의 길이를 반환한다.
