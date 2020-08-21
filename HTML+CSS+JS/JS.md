@@ -216,3 +216,18 @@ console.log(blockScopeVale); // ReferenceError
 - Object.assign(returnObject,...assignObject)
 - JSON.stringify(value,replacer,spaceNumber) : JSON을 문자열로 변환한다.
 - JSON.parse(json) : JSON문자열을 JSON으로 변경한다.
+- setTimeout(function{},time) : time 시간 후에 function을 호출한다.
+- setInterval(function{},time) : 일정time마다 function을 호출한다.
+
+### Promise
+- 비동기를 처리하기 위해 만들어졌다.
+- 처리 후 완료되면 하나의 값을 결과로 반환한다.
+    + Pending : 아직 결과가 없는 상태이다.
+    + Fulfilled : 성공적으로 완료된 상태이다.
+    + Rejected : 처리가 실패한 상태이다.
+    
+
+### Async
+- 비동기 작업을 제어하기 위해 만들어졌다.
+- `await`와 함께 써야하며 반드시 `async`함수 안에 있어야 한다.
+
