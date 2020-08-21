@@ -181,4 +181,38 @@ console.log(blockScopeVale); // ReferenceError
 - 나머지는 다른 프로그래밍 언어와 비슷하다.
 
 ### Module(모듈)
-- 
+- `export` : 모듈 내의 특정 코드를 외부에서 사용이 가능하게 만든다.
+- `import` : export 한 코드들을 가지고 올 수 있다.
+- `default` : 모듈에서 기본으로 내보내는 값을 말한다.
+- `as` : 현재 모듈에서 다른 이름으로 변경이 가능하다.
+- 런타임 로딩(Runtime Loading) : 의존 관계가 형성된 모듈들을 어플리케이션이 구동 시점에 비동기 HTTP 요청으로 불러드려 실행한다.
+- 번들링(Bundling) : 의존 관계가 형성된 모듈들을 하나의 파일로 묶어준다. 어플리케이션이 구동할 때 묶어진 파일을 업로딩 하며 대표적 모듈 번들러로는(Webpack)이 있다.
+
+### 표준 내장 객체
+- Number.isNaN(value) : value가 Nan이면 true 그렇지 않으면 false
+- Number.isInteger(value) : value가 정수면 true 그렇지 않으면 flase
+- Array.isArray(value) : value가  배열이면 true 그렇지 않으면 flase
+- ParseInt(value) : value(문자열)을 정수로 변환한다.
+- ParseFloat(value) : value(문자열)을 실수로 변환한다.
+- slice(s,e) : s부터 e까지 자른다.(e는 필수사항은 아니다. 때문에 e가 없을시 인덱스 끝까지 자른다. s가 음수면 음수만큼 내려온 index로 취급한다.)
+- substring(s,e) : s부터 e까지 자른다.(slice와 다르게  s or e가 음수이거나 NaN이면 0을 사용한다.)
+- substr(s,l) : s부터 l길이 만큼 문자열을 자른다.
+- length() : 문자열의 길이를 반환한다.
+- toString() : 객체를 문자열로 변경한다.
+- push(value) : 배열 요소 뒤에 value를추가한다.
+- unshift(value) : 배열 요소 맨 앞에 value를추가한다.
+- join(value) : 배열에 특정 구분자를 넣어 문자형으로 변환한다.
+- sort(comp) : comp비교를 통해 정렬가준을 정한뒤 정렬한다.
+- some(condition) : 배열 요소가 특정 조건을 만족하면 true를 반환과 동시에 함수 종료
+- every(condition) : 모든 배열 요소가 특정 조건을 만족하면 true를 반환 그렇지 않으면 false를 반한과 동시에 함수 종료
+- find(condition) : 배열에서 조건에 만족하는 첫 번째 요소를 반환한다.
+- filter(condition) : 배열의 특정 조건을 만족하는 요소들만 새로운 배열을 만들어 반환한다.
+- map(e) : 배열의 요소를 일괄 변경해야 하는경우(ex e.id = "#id"+e.id)
+- reduce((sum,e){return sumValue;},startValue) : 배열 내 값을 누적시킨다.
+- Object.keys(obj) : 객체에서 키만 추출한다.
+- Object.values(obj) : 객체에서 값만 추출한다.
+- Object.entries(obj) : 객체를 배열로 변환한다.
+- Object.freeze(obj) : 객체가 변경되지 않도록 설정한다.
+- Object.assign(returnObject,...assignObject)
+- JSON.stringify(value,replacer,spaceNumber) : JSON을 문자열로 변환한다.
+- JSON.parse(json) : JSON문자열을 JSON으로 변경한다.
