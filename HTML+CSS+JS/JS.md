@@ -171,4 +171,14 @@ console.log(blockScopeVale); // ReferenceError
 - JS의 모든 객체 속성은 자기 자신에 대한 정보를 담고 있는 속성 기술자를 가지고 있다.
 - Object.getOwnPropertyDescriptor() 사용하여 기술자 객체를 가져온다.
 - Object.defineProperty를 통해 해당 객체의 속성을 가져온다
-    + `value` : 
+    + `value` : 값을 나타낸다.
+    + `enumerable` : 속성을 나열 가능 여부를 나타낸다.
+    + `writable` : 값의 변경 여부를 나타낸다.
+    + `configurable` : 속성 기술자 변경 여부를 나타낸다.
+
+### Class
+- 생성자는 constructor()을 이용하고 상속은 extends를 이용한다.
+- 나머지는 다른 프로그래밍 언어와 비슷하다.
+
+### Module(모듈)
+- 
