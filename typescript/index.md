@@ -36,6 +36,7 @@ console.log(result)
 
 import { readFile } from "fs";
 import { resolve } from "path";
+import { values } from "ramda";
 
 // number and boolean behave in a deep copy way
 /*
@@ -226,3 +227,99 @@ console.log(mergedArray2) // [1, 2, 3, 4,  5, 6, 7, 8, 9, 10]
 // Available as Promise object
 // The function can return a value
 
+// Principles and Applications of Functional Combinations
+
+// high-order-function
+// A function expression is a kind of value
+// The function when one function returns another
+
+// type FirstOrderFunc<T, R> = (T) => R
+// type SecondOrderFunc<T, R> = (T) => FirstOrderFunc<T, R>
+// type ThirdOrderFunc<T, R> = (T) => SecondOrderFunc<T, R>
+
+// const add: ThirdOrderFunc<number, number> =
+//     (x: number): SecondOrderFunc<number, number> =>
+//         (y: number): FirstOrderFunc<number, number> =>
+//             (z: number): number => x + y + z
+
+// console.log(add(1)(2)(3)) // 6
+
+// Closure
+// Closure is a persistence scope
+// Closer functionality is essential to implement higher order functions
+
+// const makeNames = (): () => string => {
+//     const names = ['Jack', 'Jane', 'Smith']
+//     let index = 0
+//     return (): string => {
+//         if (index == names.length)
+//             index = 0
+//         return names[index++]
+//     }
+// }
+
+// const makeName: () => string = makeNames()
+// console.log([1, 2, 3, 4, 5, 6].map(n => makeName())) // [ 'Jack', 'Jane', 'Smith', 'Jack', 'Jane', 'Smith' ]
+
+// composition function 
+// combine functions that implement small functions several times to produce more meaningful functions
+// It looks like a synthetic function
+
+// const f = <T>(x: T): string => `f(${x})`
+// const g = <T>(x: T): string => `g(${x})`
+// const h = <T>(x: T): string => `h(${x})`
+// y= h(h(f(x)))
+
+// const compose = <T, R>(...functions: readonly Function[]): Function => (x: T): (T) => R => {
+//     const deepCopiedFunctions = [...functions]
+//     return deepCopiedFunctions.reverse().reduce((value, func) => func(value), x)
+// }
+// const composedFGH = compose(h, g, f)
+// console.log(composedFGH('x')) // h(g(f(x)))
+
+// pipe function 
+// no reverse
+// const f = <T>(x: T): string => `f(${x})`
+// const g = <T>(x: T): string => `g(${x})`
+// const h = <T>(x: T): string => `h(${x})`
+
+// const pipe = <T, R>(...functions: readonly Function[]): Function => (x: T): (T) => R => {     
+//     return deepCopiedFunctions.reduce((value, func) => func(value), x)
+// }
+
+// const piped = pipe(f,g,h)
+// console.log(piped('x')) // h(g(f(x)))
+
+// f function Signature: (number)=>string
+// g function Signature: (string)=>string[]
+// h function Signature: (string[])=>number
+
+/// Lamda Library
+
+// Lamda Package
+// import * as R from 'ramda'
+
+// R.range function
+// R.range(min,max)
+
+// import * as R from "ramda"
+
+// console.log(R.range(1, 9 + 1))
+
+// R.tap Debugging function
+// R.tap(callback)(array)
+// Understand how the values change step by step
+
+// import * as R from "ramda"
+
+// const numbers: number[] = R.range(1, 9 + 1)
+// R.tap(n => console.log(n))(numbers) // [1,2,3,4,5,6,7,8,9]
+
+// R.pipe function
+// import * as R from 'ramda'
+
+// const array: number[] = R.range(1, 10)
+// R.pipe(R.tap(n => console.log(n)))(array)
+
+// auto curry
+// Can be used as a normal function or higher order function
