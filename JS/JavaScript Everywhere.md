@@ -12,7 +12,7 @@ app.listen(4000,()=> console.log('Listening on port 4000'));
 - 서버 어플리케이션의 코드가 변경되면 웹 서버를 새로 시작해야 한다.
 - nodemon을 이용하면 서버를 자동으로 재시작할 수 있다.
 - package.json 파일 내의 scripts 명령어를 변경하여 사용한다.
-
+- npm run dev로 실행
 // package.json
 ```
 "scripts":{
