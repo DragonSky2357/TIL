@@ -78,3 +78,45 @@ const server = new ApolloServer({
   
 });
 ```
+
+### GraphQL 기초
+#### 스키마
+
+```
+const {ApolloServer.gql} = require('apollo-server-express');
+```
+
+- GraphQL은 형식 정의 스키마 리졸버(resolver)로 이루어져 있다.
+- 리졸버(resolver)은 쿼리와 뮤테이션(mutation)을 처리한다.
+
+// GraphQL 스키마 구성
+```
+const typeDefs = gql`
+    type Query{
+        name : type
+    }
+`;
+```
+
+// GraphQL 리졸버 구성
+```
+const resolvers = {
+    type Query{
+        name : () => function
+    }
+};
+```
+
+- GraphQL API를 제공하기 위해 관련설정 및 미들웨어를 추가하고 아폴로 서버 통합한다.
+
+```
+// 아폴로 서버 설정
+server.applyMiddleware({ app, path: '/api' });
+
+// 아폴로 GraphQL 미들웨어를 적용 및 /api로 경로 설정
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  
+});
+```
