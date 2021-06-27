@@ -29,11 +29,10 @@ app.listen(4000,()=> console.log('Listening on port 4000'));
 const port = process.env.PORT || 4000;
 ```
 
-## Graph QL API
+## GraphQL API
 - 데이터를 효율적으로 연결할 수 있고, 요청의 수와 복잡성을 줄이고 클라이언트가 필요로 하는 데이터를 제공한다.
-```
-const port = process.env.PORT || 4000;
-```
+- API를 위한 쿼리 언어이며 타입 시스템을 사용하여 쿼리를 실행하는 서버사이드 런타임이다.
+- 특정한 데이터베이스나 특정한 스토리지 엔진과 관계되어 있지 않으며 기존 코드와 데이터에 의해 대체된다.
 
 ### 서버를 API로
 - apollo-server-express 패키지를 사용하여 서버를 GraphQL 서버로 전환한다.
