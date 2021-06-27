@@ -64,3 +64,19 @@ const resolvers = {
     }
 };
 ```
+
+- GraphQL API를 제공하기 위해 관련설정 및 미들웨어를 추가하고 아폴로 서버 통합한다.
+
+```
+// 아폴로 서버 설정
+server.applyMiddleware({ app, path: '/api' });
+
+// 아폴로 GraphQL 미들웨어를 적용 및 /api로 경로 설정
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  
+});
+
+
+```
