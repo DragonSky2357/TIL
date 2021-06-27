@@ -77,6 +77,4 @@ const server = new ApolloServer({
   resolvers,
   
 });
-
-
 ```
