@@ -81,7 +81,10 @@ const server = new ApolloServer({
 
 ### GraphQL 기초
 #### 스키마
-
+- 데이터와 상호작용을 글로 표현한것이다.
+- GrapQL은 스키마를 필요하며, API에 대한 엄격한 계획을 강제하기 위한것이며 스키마 내에서 정의된 데이터만 반환 및 상호작용을 수행한다.
+- GrapQL 스키마의 기본 구성 요소는 객체 자료형이며 5가지 스칼라 자료형이 내장되어 있다.
+##### String
 ```
 const {ApolloServer.gql} = require('apollo-server-express');
 ```
