@@ -1,8 +1,12 @@
 
-# JavaScript 
-- 웹페이지를 동적으로 움직이게 만들어준다.
-- HTML이 몸이라면 CSS는 스타일리쉬(화장,옷)이라면 JS는 스마트폰이다. 
-- Node js 및 React js등 여러가지 분야로 확장됨
+# Hello World
+```
+const express = require('express');
+const app = express();
+
+app.get('/',(req,res)=>res.send('Hello World'));
+app.listen(4000,()=> console.log('Listening on port 4000'));
+```
 
 ## JavaScript의 기본
 
