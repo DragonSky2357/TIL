@@ -8,14 +8,18 @@ app.get('/',(req,res)=>res.send('Hello World'));
 app.listen(4000,()=> console.log('Listening on port 4000'));
 ```
 
-## JavaScript의 기본
+## Nodemon
+- 서버 어플리케이션의 코드가 변경되면 웹 서버를 새로 시작해야 한다.
+- nodemon을 이용하면 서버를 자동으로 재시작할 수 있다.
+- package.json 파일 내의 scripts 명령어를 변경하여 사용한다.
 
-### 기본적인 출력
-
+// package.json
 ```
-var PI=3.14
-console.log("Hello World"); // Hello World
-console.log(${PI}); // 3.14
+"scripts":{
+    ...
+    "dev" : "nodemon src/index.js"
+    ...
+}
 ```
 
 ### 값(value)와 변수(variable)
