@@ -194,29 +194,37 @@ query{
               content: 'Oh hey look, another note!',
               author: 'Riley Harrison'
             }
-        ]       
+        ]
     }
-}       
+}
 ```
+
 ### 특정 값으로 요청하는 방식(Id)
+
 - 스키마에서 인수를 사용하여 리졸버 함수에 전달한다.
 - 스키마를 업데이트 이후 쿼리 리졸버를 작성할 수 있다.
 - API 인수 값을 일을 수 있어야 하는데 아폴로 서버가 파라미터를 리졸버 함수에 전달한다.
 
 #### parent
-- parent 쿼리의 결과로, 쿼리를 중복으로 감쌀 때 유용하다. 
+
+- parent 쿼리의 결과로, 쿼리를 중복으로 감쌀 때 유용하다.
 
 ### args
+
 - 사용자가 쿼리와 함께 전달한 인수이다.
 
 ### context
+
 - 서버 어플에서 리졸버 함수에 전달하는 정보, 현재 사용자 또는 DB정보와 같은 것이 포함된다.
 
 ### info
+
 - 쿼리 자체에 대한 정보
 
 #### Example
+
 - 존재하지 않는 노트를 쿼리하면 null값을 반환
+
 ```
 // 리졸버
 const resolvers = {
@@ -252,11 +260,13 @@ query{
 # 데이터베이스
 
 ## 몽고DB
+
 - 도큐먼트(document)에 데이터를 저장한다.
 - 노드 생태계와 궁합이 좋다.
 - 처음 입문하는 사람도 시작하는 데 부담이 없다.
 
 ## 몽고DB 시작
+
 ```
 // 몽고DB 쉘 실행
 $ mongo
@@ -281,6 +291,7 @@ $ db.'DBname'.remove({type:'typename'})
 ```
 
 ## 몽고DB와 어플리케이션 연동
+
 - API 연동하기 위해 몽구스(mongoose)사용
 - 몽구스는 스키마 기반 모델링 솔루션으로 관소화하여 몽고와 쉽게 연동하게 돕는 라이브러리이다.
 - .env 파일에 로컬 데이터베이스 접속 URL 변경한다.
@@ -288,7 +299,9 @@ $ db.'DBname'.remove({type:'typename'})
 ```
 DB_HOST = mongodb://localhost:27017/notedly
 ```
+
 - src 디렉터리 내에 'db.js'생성 및 연결
+
 ```
 const mongose = require('mongoose');
 
@@ -324,7 +337,9 @@ module.exports = {
   }
 };
 ```
+
 - .env 설정 및 db 임포트
+
 ```
 require('dotenv').config();
 const db = require('./db');
@@ -333,6 +348,7 @@ const db = require('./db');
 ## 어플리케이션 모델 생성
 
 - src/models/note.js 생성
+
 ```
 const mongoose = require('mongoose');
 
@@ -369,6 +385,7 @@ module.exports = Note;
 ```
 
 - 모델을 임포트 하고 models 객체를 반환
+
 ```
 const Note = require('./note');
 
@@ -380,11 +397,13 @@ module.exports = models;
 ```
 
 - 데이터베이스 모델을 아폴로 서버 익스프레스 코드에 통합
+
 ```
 const models = require('./models');
 ```
 
 - 데이터베이스에 노트를 추가하기위한 note쿼리 및 newNote 뮤테이션 업데이트
+
 ```
 // note쿼리
 note: async (parent, args) => {
@@ -403,3 +422,231 @@ Mutation: {
 ```
 
 # CRUD 동작
+
+## 스키마와 리졸버 분리
+
+- 스키마 분리
+
+```
+// src/schema.js
+
+const { gql } = require('apollo-server-express');
+
+module.exports = gql`
+  scalar DateTime
+
+  type Note {
+    id: ID!
+    content: String!
+    author: String!
+  }
+
+  type Query {
+    notes: [Note!]!
+    note(id: ID): Note!
+  }
+
+  type Mutation {
+    newNote(content: String!): Note
+  }
+`;
+```
+
+- 리졸버 분리
+
+```
+// src/resolvers/index.js
+
+const Query = require('./query');
+const Mutation = require('./mutation');
+
+module.exports={
+  Query,
+  Mutation
+}
+```
+
+- 쿼리 코드용
+
+```
+// src/resolvers/query.js
+
+moduble.exports={
+  notes:async() =>{
+    return await models.Note.find();
+  },
+  note: async(parent,args)=>{
+    return await models.Note.findById(args.id);
+  }
+}
+```
+
+- 뮤테이션 코드
+
+```
+// src/resolvers/mutation.js
+
+moduble.exports={
+  newNote: async(parent,args)=>{
+    return await models.Note.create({
+      content:args.content,
+      author:'name'
+    });
+  }
+}
+```
+
+- 서버가 리졸버 코드를 임포트 및 데이터베이스 모델 연결한다.
+- 리졸버 모듈은 데이터베이스 모델을 참조하지만 접근할 수 없다.
+- context를 호출하여 서버 코드가 리졸버에 특정 정보를 전달한다.
+
+```
+// src/index.js
+
+const resolvers = require('./resolvers');
+
+...
+
+// 아폴로 서버 설정
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context:()=>{
+    // context에 db models 추가
+    return {models};
+  }
+});
+```
+
+- src/resolvers/query.js 수정
+
+```
+module.exports = {
+  notes: async (parent, args, { models }) => {
+    return await models.Note.find().limit(100);
+  },
+  note: async (parent, args, { models }) => {
+    return await models.Note.findById(args.id);
+  },
+};
+```
+
+- src/resolvers/mutation.js 파일로 이동
+
+```
+module.exports={
+  newNote: async (parent, args, { models, user }) => {
+    if (!user)
+      throw new AuthenticationError('You must be signed in to create a note');
+
+    return await models.Note.create({
+      content: args.content,
+      author: mongoose.Types.ObjectId(user.id),
+      favoriteCount: 0
+    });
+  }
+}
+```
+
+## GraphQL CRUD 스키마 작성
+
+- 업데이트와 삭제 작업은 데이터를 변경하기에 뮤테이션에 속한다.
+- 업데이트하려면, 업데이트를 찾기 위한 ID 인수와 새로운 내용이 필요하다.
+- 업데이트 쿼리는 새롭게 업데이트된 노트를 반환해야 한다.
+- 삭제의 경우 API가 삭제 성고을 알리는 Boolean값을 반환해야 한다.
+
+```
+type Mutation {
+    newNote(content: String!): Note
+    updateNote(id: ID!, content: String!): Note!
+    deleteNote(id: ID!): Boolean!
+  }
+```
+
+## GraphQL CRUD 리졸버
+
+- 업데이트 및 삭제 하려는 항목의 id를 전달해야 한다.
+- 삭제 성공시 true 실패시 false를 반환한다.
+
+```
+// src/resolvers/mutation.js
+
+deleteNote: async (parent, { id }, { models}) => {
+    try {
+      await note.remove({_id: id});
+      return true;
+    } catch (err) {
+      return false;
+    }
+  },
+  updateNote: async (parent, { content, id }, { models }) => {
+    return await models.Note.findOneAndUpdate(
+      {
+        _id: id
+      },
+      {
+        $set: {
+          content
+        }
+      },
+      {
+        new: true
+      }
+    );
+  },
+```
+
+## 날짜와 시간
+
+- 데이터베이스 항목을 만들고 업데이트한 시간을 기록을 위해 몽구스가 자동으로 저장 요청
+- createdAt 및 updatedAt 필드를 스키마에 추가한다.
+
+```
+// src/schema.js
+
+module.exports=gql`
+  scalar DateTime // GQL 스트링 리터럴 맞춤형 스칼라 추가
+`;
+type Note {
+    ...
+    createdAt: DateTime!
+    updatedAt: DateTime!
+  }
+```
+
+- DateTime 자료형의 값을 요청하는 모든 리졸버 함수에 유효성 검사를 추가
+
+```
+// src/resolvers/index.js
+
+...
+
+const {GraphQLDateTime} = require('graphql-iso-date');
+
+module.exports={
+  ...
+  DateTime:GraphQLDateTime
+};
+```
+
+# 사용자 계정과 인증
+
+## 애플리케이션 인증 흐름
+
+### 계정생성 흐름
+
+1. 사용자는 UI의 필드에 자신의 이메일,사용자 이름,비밀번호를 입력한다.
+2. UI는 사용자 정보와 함께 GraphQL 뮤테이션을 서버로 보낸다.
+3. 서버는 비밀번호를 암호화하고 사용자 정보를 DB에 저장한다.
+4. 서버는 사용자 ID가 포함된 토큰을 UI에 반환한다.
+5. UI는 이 토큰을 지정된 기간 동안 저장하고, 모든 요청과 함께 서버로 보낸다.
+
+### 로그인 흐름
+
+1. 사용자는 자신의 이메일,사용자 이름,비밀번호를 입력한다.
+2. UI는 정보와 함께 GraphQL 뮤테이션을 서버로 보낸다.
+3. 서버는 DB에 저장된 비밀번호를 해독하고 사용자가 입력한 비밀번호와 비교한다.
+4. 비밀번호가 일치하면 서버는 사용자 ID가 포함된 토큰을 UI로 반환한다.
+5. UI는 이 토큰을 지정된 기간 동안 저장하고, 모든 요청과 함께 서버로 보낸다.
+
+## 암호화와 토큰
